@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Call &amp; Apply</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Call &amp; Apply</h2>
+        <h3><kbd>this</kbd> метода можно изменить при вызове.</h3>
+        <p>Вызов функции и временное присвоение <kbd>this</kbd> объекта:</p>
+        <h4><kbd>function</kbd><span class="red">.call</span><kbd>(object)</kbd></h4>
+        <h4><kbd>function</kbd><span class="red">.apply</span><kbd>(object)</kbd></h4>
+        <p class="attention">Если в качестве объекта передать <kbd class="red">null</kbd>, то для функции в качестве <kbd class="red">this</kbd> будет 
+        <kbd class="red">window</kbd></p>
+        <pre><kbd>
+var n = 'n in window';
+
+function <span class="red">foo</span> () {
+    return <span class="red">this</span>.n;
+}
+  
+const <span class="red">obj</span> = {
+    n: 'n in obj'
+}
+    
+
+foo.call(obj)   <span class="comment"> // n in obj</span>
+foo.apply(obj)  <span class="comment"> // n in obj</span>
+
+foo.call(null)   <span class="comment"> // n in window</span>
+foo.apply(null)  <span class="comment"> // n in window</span>
+        </kbd></pre>    
+        <h4>Аргументы для функции с Call &amp; Apply</h4>
+        <h4><kbd>function</kbd><span class="red">.call</span><kbd>(object, arg0, arg1, arg2)</kbd></h4>
+        <h4><kbd>function</kbd><span class="red">.apply</span><kbd>(object, [arg0, arg1, arg2])</kbd></h4>  
+         <p>Кроме изменения <kbd>this</kbd> эти два метода могут передавать аргументы. Apply принимает аргументы как массив, а Call - как список.</p>
+         <h4>Пример</h4>
+         <pre><kbd>
+<span class="comment">/*  Проблема передачи массива в качестве аргумента для Math.max  */</span>
+const arr = [10, 20, 30, 90, 80, 70, 60 , 40, 50];
+Math.max(10, 20, 30, 90, 80, 70, 60 , 40, 50)  <span class="comment">// 90</span>
+Math.max(arr)                                  <span class="comment">// NaN</span>
+
+<span class="comment">/* Решение с помощью apply */</span>
+const max = function (array) {
+    return  Math.max.<span class="red">apply(Math, array)</span>
+};
+
+max(arr)  <span class="comment">// 90</span>
+         </kbd></pre>
+         <h4>Пример 2</h4>
+        <pre><kbd>
+function addProp (prop, value) {
+    this[prop] = value;
+}
+  
+const ann = {
+    name: "Ann"
+}
+
+addProp.<span class="red">call</span>(ann, "group", "FE1")   
+ann.group        <span class="comment"> // FE1</span>
+
+        </kbd></pre>         
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <a href="./constructor.html" class="next">next</a>
+    <script src="./js/call_apply.js"></script>
+</body>
+</html>

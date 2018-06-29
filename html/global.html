@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Global</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Global</h2>
+        <p>Если объект вложен в другой объект, то <kbd>this</kbd> вложенного объекта - это ссылка на ссылку объекта родителя.</p>
+        <img src="../img/this2.svg" alt="">
+        <p>Все объекты в браузере вложены в объект <kbd>window</kbd></p>
+        <ul>
+            <li>Если функция находится вне объекта, то ее <kbd>this</kbd> ссылается на глобальный объект
+<pre><kbd>this === window  <span class="comment">// true</span>
+    </kbd></pre>
+<pre><kbd>'use strict';
+this === window  <span class="comment">// true</span>
+</kbd></pre>            
+            </li>
+            <li>Объявленные в глобальной области переменные <kbd>var</kbd> и функции Function Declaration доступны к вызову через обращение <kbd>window.name</kbd>:
+<pre><kbd>var vName = 'vName';
+function fName () {  return 'fName' }
+
+console.log(window.vName);  <span class="comment">// vName</span>
+console.log(window.fName()); <span class="comment">// fName</span>
+</kbd></pre>            
+            </li>
+            <li>Т.к. <kbd>window === this</kbd>, то можно переписать вызовы через <kbd>this</kbd> вместо window: 
+                <pre><kbd>console.log(this.vName);  <span class="comment">// vName</span>
+console.log(this.fName()); <span class="comment">// fName</span>
+                    </kbd></pre>            
+            </li>
+            <li>Обращение к именам, объявленным с помощью <kbd>let</kbd>, <kbd>const</kbd> через <kbd>this</kbd> приведет к <kbd>undefined</kbd></li>
+            <li><div class="attention">Объявление без <span class="red">var</span> и без <span class="red">'use strict'</span> создаст глобальную переменную в любом месте программы. Этого необходимо всячески избегать</div></li>
+        </ul>
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <a href="./object.html" class="next">next</a>
+    <script src="./js/global.js"></script>
+</body>
+</html>

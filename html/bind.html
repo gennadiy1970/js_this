@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bind</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Bind</h2>
+        <h3><kbd>this</kbd> функции можно изменить.</h3>
+        <p>Присвоим функции <kbd>this</kbd> объекта:</p>
+        <h4><kbd>function</kbd><span class="red">.bind</span><kbd>(object)</kbd></h4>
+        <pre><kbd>
+const n = 'n in window';
+
+function <span class="red">foo</span> () {
+    return <span class="red">this</span>.n;
+}
+  
+const <span class="red">obj</span> = {
+    n: 'n in obj'
+}
+    
+const bindedFoo = foo.<span class="red">bind</span>(obj);
+
+console.log(bindedFoo())  <span class="comment"> // n in obj</span>
+        </kbd></pre>
+        <p class="attention">Если в качестве объекта передать <kbd class="red">null</kbd>, то для функции в качестве <kbd class="red">this</kbd> будет 
+            <kbd class="red">window</kbd></p>
+        <h4>Запоминание функцией части аргументов (каррирование)</h4>
+        <pre><kbd>
+function setLocalTime(time, local) {
+    return time + local;
+}
+    
+const getLocalTime = setLocalTime.<span class="red">bind</span>(null, 2);
+
+typeof getLocalTime;  <span class="comment"> // function</span>
+getLocalTime(10);     <span class="comment"> // 12</span>            
+        </kbd></pre>
+        <p>Bind используется в асинхронных callback функциях, и мы еще столкнемся с ними позже.</p>
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <a href="./call_apply.html" class="next">next</a>
+    <script src="./js/bind.js"></script>
+</body>
+</html>

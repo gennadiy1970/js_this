@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Объект</h2>
+        <p><kbd>this</kbd> внутри объекта это ссылка на сам этот объект:</p>
+        <pre><kbd>const <span class="red">parent</span> = {
+    method: function () {
+       return  <span class="red">this</span> === <span class="red">parent</span>;
+    }
+};
+                
+parent.method(); <span class="comment">// true</span>            
+        </kbd></pre>
+        <img src="../img/this2.svg" alt="">
+        <p>Объект можжет быть вложенным, тогда и <kbd>this</kbd> указывает на вложенность:</p>
+        <pre><kbd>const <span class="red">grandparent</span> = {
+    <span class="red">parent</span>: {
+        method: function () {
+            return  <span class="red">this</span> === <span class="red">grandparent.parent</span>;
+        }
+    }
+};
+                        
+grandparent.parent.method(); <span class="comment">// true</span>            
+        </kbd></pre>
+        <p>А т.к. все объекты скрипта браузера находятся внутри объекта window, то </p> 
+        <pre><kbd><span class="red">window</span>.grandparent.parent.method(); <span class="comment">// true</span>            
+    </kbd></pre>               
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <a href="./bind.html" class="next">next</a>
+    <script src="./js/global.js"></script>
+</body>
+</html>

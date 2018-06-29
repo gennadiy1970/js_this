@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intro</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Введение</h2>
+        <h3>Хранение по ссылке</h3>
+        <h4>Два типа памяти: stack &amp; heap</h4>
+        <img src="../img/stack_vs_heap.svg" alt="">
+        <ul>
+            <li>Stack - хранение значений</li>
+            <li>Heap <ul>
+                <li>в stack записывается значение - адрес(указатель) на область памяти в heap</li>
+                <li>в heap выделяется некоторый объем памяти под имена свойств и их значений, а таже под методы </li>
+                <li>если на область памяти в heap нет указателя, то эту область памяти удаляет Garbage Collector</li>
+            </ul></li>
+        </ul>
+        <p>Любой объект имеет указатель(адрес) недоступный в явном виде для программиста.</p> 
+        <p>Указатель можно присваивать переменным. <pre><kbd>const a = { a: 1}
+const b = a;
+console.log(b.a)  <span class="comment">// 1</span>            
+        </kbd></pre> </p>
+        <h4>обращение к собственным свойствам/методам объекта</h4>
+        <img src="../img/this.svg" alt="" width="450" style="float:left; margin: 0 10px 10px 0; box-shadow: 0 0 2px 2px hsla(0,100%,100%,0.5);">
+        <img src="../img/this1.svg" alt="" width="450" style="float:right; margin: 30px 10px 0 30px; box-shadow: 0 0 2px 2px hsla(0,100%,100%,0.5);">
+        <p>Наиболее частый случай обращения - это обращение внутри объекта к свойствам и методам объекта:
+<pre><kbd>const <span class="red">obj</span> = { 
+    <span class="red">a</span>: 1,
+    b: function () {
+        return <span class="red">obj.a</span> + 1
+    }
+}
+console.log(obj.b())  <span class="comment">// 2</span>
+</kbd></pre>            
+        </p>
+        <p>Когда происходит обращение к собственным свойствам/методам объекта имя объекта можно заменить на <kbd>this</kbd>
+<pre><kbd>const <span class="red">obj</span> = { 
+    <span class="red">a</span>: 1,
+    b: function () {
+        return <span class="red">this.a</span> + 1
+    }
+}
+console.log(obj.b())  <span class="comment">// 2</span>
+            </kbd></pre>            
+        </p>
+        <h4></h4>
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <a href="./global.html" class="next">next</a>
+    <script src="./js/intro.js"></script>
+</body>
+</html>

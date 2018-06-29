@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Arrow</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Arrow</h2>
+        <p>В обычных функциях/методах имеется свой <i class="orange">this</i> <span class="red"></span> как ссылка на объект из которого вызвана функция/метод</p>
+        <ol>
+            <li> 
+                <h6>Функция</h6>
+                <pre><kbd>
+var a = function a() {
+  return this;
+};
+
+a() === window <span class="comment"> // true</span>            
+        </kbd></pre>           
+            </li>
+            <li>
+                <h6>Метод</h6>
+                <pre><kbd>
+var a = function a() {
+  return this;
+};
+
+var foo = {
+    bar: a
+};
+
+foo.bar() === foo <span class="comment">// true</span>
+            </kbd></pre>
+            </li>
+            <li>
+                <h6>Передача метода другому объекту</h6>
+                <pre><kbd>
+var baz = {};
+baz.bar = foo.bar;
+
+baz.bar() === baz <span class="comment">// true</span>                    
+                </kbd></pre>
+            </li>
+        </ol>
+        
+
+        <p>В стрелочных функциях <i class="orange">this</i> 
+            <span class="red"> берется из лексического окружения.</span></p>
+            <img src="../img/arrow2.svg" alt="">
+        <ol>
+            <li> 
+                <h6>Функция</h6>
+                <pre><kbd>
+var a = (() =&gt; this);
+
+a() === window <span class="comment">// true</span>            
+        </kbd></pre>           
+            </li>
+            <li>
+                <h6>Метод</h6>
+                <pre><kbd>
+var a = (() =&gt; this);
+
+var foo = {
+    bar: a
+};
+
+foo.bar() === foo;     <span class="comment"> // false</span>
+foo.bar() === window;  <span class="comment"> // true</span>
+<!-- console.log('foo.bar() === window', result);  -->
+<!-- <span class="comment">// foo.bar() === window true</span> -->
+            </kbd></pre>
+            </li>
+            <li>
+                <h6>Передача метода другому объекту</h6>
+                <pre><kbd> 
+var baz = {};
+baz.bar = foo.bar;
+
+baz.bar() === baz;    <span class="comment">// false</span>                    
+baz.bar() === window; <span class="comment">// true</span>                    
+                </kbd></pre>
+            </li>
+        </ol>
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <!-- <a href="./.html" class="next">next</a> -->
+    <script src="./js/arrow.js"></script>
+</body>
+</html>

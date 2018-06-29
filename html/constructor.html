@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Constructor</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Constructor</h2>
+        <pre><kbd>
+function Student (name) {
+    this.name = name;
+}
+        </kbd></pre>
+        <p>Если сделать вызов функции <kbd>Student()</kbd>, то мы получим глобальную переменную <kbd>window.name</kbd> </p>
+        <p>Любая функция (кроме стрелочной) может <span class="red">создавать объект</span>.
+        Для создания объекта требуется вызвать функцию с оператором <kbd>new</kbd></p>
+        <p class="attention">Функцию-конструктор принято записывать с большой буквы</p>
+<pre><kbd>
+const ann = <span class="red">new</span> Student ('Ann');
+console.log(typeof Student) <span class="comment"> // function</span>    
+console.log(typeof ann) <span class="comment">     // object</span>    
+console.log(ann.name) <span class="comment">       // Ann</span>    
+</kbd></pre>
+        <h4><kbd>Constructor</kbd></h4>
+        <ul>
+            <li>создает объект</li>
+            <li>присваивает объекту свойства из параметров и аргументов функции-конструктора</li>
+            <li>записывает в <kbd>this</kbd> ссылку на вновь созданный объект</li>
+        </ul> 
+        <pre><kbd>
+function Student (name) {
+    this.name = name;
+    this.foo = function () {
+        return this
+    }
+}
+    
+    const ann = new Student ("Ann");
+    ann.foo() === ann  <span class="comment"> // true</span>            
+        </kbd></pre>       
+    </div>
+    <a href="../index.html" class="back">back</a>
+    <a href="./arrow.html" class="next">next</a>
+    <script src="./js/constructor.js"></script>
+</body>
+</html>
